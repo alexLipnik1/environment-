@@ -8,10 +8,9 @@ var indexRoutes = require('./routes/index');
 
 // CREATE APP //
 var app = express();
-
 // VIEW ENGINE //
 app.set('view engine', 'html');
-app.engine('html', function (path, options, callbacks) {
+app.engine('html', function (path, options, callback) {
   fs.readFile(path, 'utf-8', callback);
 });
 
