@@ -2,6 +2,13 @@ import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import styles from './app.scss';
 
+
+const style = {
+  width: '75%',
+  height: '100%'
+}
+
+
 export class MapContainer extends React.Component {
   state = {
     showingInfoWindow: false,
@@ -28,14 +35,14 @@ export class MapContainer extends React.Component {
 
   render() {
     return (
-  		<Map google={this.props.google} zoom={14}>
+  		<Map style={style} google={this.props.google} zoom={14}>
   			<Marker
           className={styles.marker}
           onClick={this.onMarkerClick}
 		      title={'The marker`s title will appear as a tooltip.'}
 		      name={'SOMA'}
 		      position={{lat: 37.778519, lng: -122.405640}}
-          icon ={'http://maps.google.com/mapfiles/ms/icons/green-dot.png'} 
+          icon ={'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}
           />
 
           <InfoWindow

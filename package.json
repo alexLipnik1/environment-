@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "dev": "webpack-dev-server"
   },
   "author": "Vahid",
   "license": "MIT",
@@ -15,7 +16,9 @@
     "css-loader": "^0.28.5",
     "express": "^4.15.2",
     "google-maps-react": "^1.1.0",
+    "input-moment": "^0.3.5",
     "jquery": "^3.2.1",
+    "material-ui": "^0.19.0",
     "mongoclient": "^1.0.3",
     "mongodb": "^2.2.31",
     "react": "^15.4.2",

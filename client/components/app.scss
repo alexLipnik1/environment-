@@ -1,6 +1,7 @@
 
-.marker {
-  color: green;
+._map {
+  height: 100%;
+  width: 100%;
 }
 
 .container {
@@ -10,17 +11,44 @@
 	height: 100%;
 
 	.control {
-		display: felx;
+		display: flex;
 		flex-direction: column;
 		height: 100%;
-		flex: 1;
+		flex: 0 0 auto;
 		background: black;
+
+    .dateControl {
+      height: 30%;
+      width: 100%;
+      background: white;
+			padding: 10px 25px;
+			
+			.time {
+				$h-spacing: 8px;
+
+				display: flex;
+				margin: 0 (-$h-spacing);
+				> * {
+					width: auto !important;
+					margin: 0 $h-spacing;
+					flex: 0 0 120px;
+				}
+			}
+
+    }
+
+    .userControl {
+      height: 70%;
+      width: 100%;
+      background: blue;
+    }
 	}
 
 	.map_control {
 		display: felx;
 		flex-direction: column;
 		height: 100%;
+    width: 100%;
 		flex: 3;
 		background: white;
 
