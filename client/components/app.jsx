@@ -5,13 +5,13 @@ import Map from './mapContainer.jsx'
 
 
 export default class App extends React.Component {
-  sendRequest = () => {
-    $.ajax({
-		url: '/get-data',
-		success(data){ console.log(data) },
-		dataType: 'json',
-	})
-  }
+	sendRequest = () => {
+	$.ajax({
+			url: '/get-data',
+			success(data){ console.log(data) },
+			dataType: 'json',
+		})
+	}
 
   // <a onClick={this.sendRequest}>get</a>
 
