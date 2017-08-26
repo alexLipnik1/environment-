@@ -4,6 +4,15 @@
   width: 100%;
 }
 
+.sendButton {
+	color: #FFFFFF;
+	background: #6868CD;
+	width: 80%;
+	margin: 17px 0;
+	display: flex;
+	justify-content: center;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -40,7 +49,7 @@
     .userControl {
       height: 70%;
       width: 100%;
-      background: blue;
+      background: #2A2A2D;
     }
 	}
 

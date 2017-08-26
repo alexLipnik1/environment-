@@ -10,18 +10,20 @@ router.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname, '../../client/index.html'));
 });
 
-router.get('/get-data', function (req, res) {
+router.get('/get-data', function (req, res, data) {
 	mongo.connect(url, function(err, db) {
 		if(err){
 			return res.status(500).send("Couldn't connect to server")
 		}
 
-		var cursor = db.collection('user-data').find(
-			{'time': {$gte: '2017-04-01T00:00:00.000Z', $lte: '2017-04-01T01:00:00.000Z'}}).toArray((err, docs) => {
+		const sel = {'time': {$gte: req.query.from, $lt: req.query.to}};
+		console.log(sel)
+		var cursor = db.collection('user-data').find(sel).toArray((err, docs) => {
 			if(err){
 				return res.status(500).send("Couldn't fetch documents")
 			}
-
+			
+			console.log(req.query['1'])
 			res.send(JSON.stringify(docs));
 		});
 
