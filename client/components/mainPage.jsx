@@ -11,6 +11,7 @@ export default class MainPage extends React.Component {
 	state ={
 		date: new Date(2017, 2, 31),
 		time: new Date(0, 0, 0, 23, 3, 38),
+		data: '',
 	}
 
 	updateDate = (event, value) => {
@@ -34,29 +35,21 @@ export default class MainPage extends React.Component {
 		var minutes = this.state.time.getMinutes().toString();
 		var seconds = this.state.time.getSeconds().toString(); 
 
-		console.log(
-			hours1
-		)
 		var _date1 = moment(new Date(year, month, day, hours1, minutes, seconds)).format('YYYY-MM-DD[T]HH:mm:ss[Z]')
 		var _date2 = moment(new Date(year, month, day, hours2, minutes, seconds)).format('YYYY-MM-DD[T]HH:mm:ss[Z]')
 
-		console.log('date1', _date1);
-		console.log(_date2);
-		console.log(this.state)
-
 		$.ajax({
-			url: '/get-data',
+			url: '/get-geo-data',
 			data: {from: _date1, to: _date2},
-			success(_data) { console.log(_data) },
+			success: (_data) => { 
+				this.setState({
+					data: _data,
+				})
+				// console.log(this.state.data)
+			},
 			dataType: 'json',
 		})
 	}
-
-	sendRequest = () => {
-
-	}
-
-	// <a onClick={this.sendRequest}>get</a>
 
 	render() {
 		return (
@@ -73,13 +66,13 @@ export default class MainPage extends React.Component {
 								value={this.state.time}
 							/>		
 						</div>
-						<Button className={styles.sendButton} onClick={this.handleClick}>Send</Button>
+						<Button className={styles.sendButton} bsStyle="primary" block onClick={this.handleClick}>Send</Button>
 					</div>
 					<div className={styles.userControl} />
 				</div>
 				<div className={styles.map_control}>
 					<div className={styles.map}>
-						<Map />
+						<Map data={this.state.data}/>
 					</div>
 				</div>
 			</div>

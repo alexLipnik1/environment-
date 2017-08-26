@@ -8,7 +8,6 @@ const style = {
   height: '100%'
 }
 
-
 export class MapContainer extends React.Component {
   state = {
     showingInfoWindow: false,
@@ -34,8 +33,12 @@ export class MapContainer extends React.Component {
   }
 
   render() {
+    const { data, ...rest } = this.props;
     return (
-  		<Map style={style} google={this.props.google} zoom={14}>
+  		<Map style={style} zoom={14} {...rest} >
+        {
+          console.log(data)
+        }
   			<Marker
           className={styles.marker}
           onClick={this.onMarkerClick}
