@@ -10,7 +10,8 @@ export default class MainPage extends React.Component {
 	state ={
 		date: new Date(2017, 2, 31),
 		time: new Date(0, 0, 0, 23, 3, 38),
-		data: null,
+		activeUsersData: null,
+		inactiveUsersData: null,
 	}
 
 	updateDate = (event, value) => {
@@ -41,11 +42,34 @@ export default class MainPage extends React.Component {
 			url: '/get-geo-data',
 			data: {from: _date1, to: _date2},
 			success: (_data) => { 
-				console.log(_data)
+				var clients = [];
+				var activeUsers = [];
+				var inactiveUsers = [];
+				var check = 0;
+				_data[0].map(v => {
+					clients.push(v._id)
+				});
 
-				// this.setState({
-				// 	data: _data,
-				// })
+				_data[1].map(v => {
+					for(var i in v){
+						if(i === '_id'){
+							check=0;
+							for(var j in clients){
+								if(clients[j] === v[i]){
+									activeUsers.push[v];
+									check++;
+								}
+							}
+							if(check===0){
+								inactiveUsers.push(v)
+							}
+						}
+					}
+				})
+				this.setState({
+					inactiveUsersData: inactiveUsers,
+					activeUsersData: activeUsers
+				})
 			},
 			dataType: 'json',
 		})
@@ -72,7 +96,7 @@ export default class MainPage extends React.Component {
 				</div>
 				<div className={styles.map_control}>
 					<div className={styles.map}>
-						<Map data={this.state.data}/>
+						<Map active={this.state.activeUsersData} inactive={this.state.inactiveUsersData} />
 					</div>
 				</div>
 			</div>

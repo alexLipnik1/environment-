@@ -37,28 +37,41 @@ export class MapContainer extends React.Component {
     lat: d.location.coordinates[1],
   })
 
-  markers = data => data.map((d, i) => (
+  activeMarkers = data => data.map((d, i) => (
     <Marker
       key={i}
       onClick={this.onMarkerClick}
       name={`client_id: ${d.client_id}`}
       time={`time: ${d.time}`}
       position={this.getDataLocation(d)}
-      icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+      icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png"      
+    />
+  ))
+
+  inactiveMarkers = data => data.map((d, i) => (
+    <Marker
+      key={i}
+      onClick={this.onMarkerClick}
+      name={`client_id: ${d.client_id}`}
+      time={`time: ${d.time}`}
+      position={this.getDataLocation(d)}
     />
   ))
 
   render() {
-    const { data, ...rest } = this.props;
+    const { active, inactive, ...rest } = this.props;
     return (
   		<Map
-        defaultCenter={data && data[0] && this.getDataLocation(data[0])}
+        center={inactive && inactive[0] && this.getDataLocation(inactive[0])}
         style={style}
-        defaultZoom={7}
+        zoom={7}
         {...rest} 
       >
         {
-          data && this.markers(data)
+          inactive && this.inactiveMarkers(inactive)
+        }
+        {
+          active && this.inactiveMarkers(active)
         }
         <InfoWindow
           marker={this.state.activeMarker}
