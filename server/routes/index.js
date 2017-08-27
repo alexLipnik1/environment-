@@ -15,18 +15,27 @@ router.get('/get-geo-data', function (req, res, data) {
 		if(err){
 			return res.status(500).send("Couldn't connect to server")
 		}
+		var data;
+		var geoData;
+		var tagData;
 
+		const sel2 = { "time" : {$gte: "2017-04-01T00:25:58.954Z", $lt: "2017-04-02T01:20:58.954Z"}};
 		const sel = {'time': {$gte: req.query.from, $lt: req.query.to}};
-		console.log(sel)
-		var cursor = db.collection('geo').find(sel).toArray((err, docs) => {
+		var cursor1 = db.collection('geo').find(sel2).toArray((err, geos) => {
 			if(err){
 				return res.status(500).send("Couldn't fetch documents")
 			}
-			
-			console.log(req.query['1'])
-			res.send(JSON.stringify(docs));
+			geoData = geos;
+			db.close();
 		});
 
+		var cursor2 = db.collection('tags').find(sel2).toArray((err, tags) => {
+			if(err){	
+				return res.status(500).send("Couldn't fetch documents")
+			}
+			tagData = tags;
+			res.send(JSON.stringify([tagData, geoData]));
+		});
 
 		db.close();
 	});

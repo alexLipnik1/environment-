@@ -32,62 +32,33 @@ export class MapContainer extends React.Component {
     }
   }
 
-  markers = (data) => {
+  getDataLocation = d => ({
+    lng: d.location.coordinates[0],          
+    lat: d.location.coordinates[1],
+  })
 
-    var lat,lng,name,time,id=0;
-
-    var arr = [   
-    ]
-
-    for(var j in data){
-      var temp = data[j];
-      for(var i in temp){
-        if(i === 'client_id'){
-          name = temp[i];
-        }
-        if(i === 'time'){
-          time = temp[i];
-        }
-        if(i === 'location'){
-          lng = temp[i].coordinates[0];
-          lat = temp[i].coordinates[1];
-          arr.push([
-              {lat: lat, lng: lng},
-              name,
-              time,
-              id++
-            ]
-          )
-        }
-      }
-    }
-
-    return  arr.map((v, i) => {
-      return (
-        <Marker
-          id ={i}
-          onClick={this.onMarkerClick}
-          title={'The marker`s title will appear as a tooltip.'}
-          name={"client_id: "+ v[1] }
-          time={"time: " + v[2] }
-          position={v[0]}
-          icon ={'http://maps.google.com/mapfiles/ms/icons/green-dot.png'}
-        />  
-      )
-    })
-  }
+  markers = data => data.map((d, i) => (
+    <Marker
+      key={i}
+      onClick={this.onMarkerClick}
+      name={`client_id: ${d.client_id}`}
+      time={`time: ${d.time}`}
+      position={this.getDataLocation(d)}
+      icon="http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+    />
+  ))
 
   render() {
     const { data, ...rest } = this.props;
     return (
   		<Map
-        center={{ lat: 43.363882, lng: -90.044922 }}
+        defaultCenter={data && data[0] && this.getDataLocation(data[0])}
         style={style}
-          zoom={7}
+        defaultZoom={7}
         {...rest} 
       >
         {
-          this.markers(data)
+          data && this.markers(data)
         }
         <InfoWindow
           marker={this.state.activeMarker}

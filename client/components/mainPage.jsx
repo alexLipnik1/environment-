@@ -6,12 +6,11 @@ import { DatePicker, TimePicker } from 'material-ui';
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
 
-export const blabla = 5;
 export default class MainPage extends React.Component {
 	state ={
 		date: new Date(2017, 2, 31),
 		time: new Date(0, 0, 0, 23, 3, 38),
-		data: '',
+		data: null,
 	}
 
 	updateDate = (event, value) => {
@@ -42,10 +41,11 @@ export default class MainPage extends React.Component {
 			url: '/get-geo-data',
 			data: {from: _date1, to: _date2},
 			success: (_data) => { 
-				this.setState({
-					data: _data,
-				})
-				// console.log(this.state.data)
+				console.log(_data)
+
+				// this.setState({
+				// 	data: _data,
+				// })
 			},
 			dataType: 'json',
 		})
