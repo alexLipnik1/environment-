@@ -18,18 +18,26 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		width: 15%;
 		flex: 0 0 auto;
 		background: black;
 
     .dateControl {
-      height: 30%;
+      height: 100%;
       width: 100%;
       background: white;
 			padding: 10px 25px;
+			> :first-child > :first-child {
+				width: 20vmin !important;
+				font-size: 3vmin !important;
+			}
 			
 			.time {
 				$h-spacing: 8px;
-
+				> :first-child > :first-child {
+					width: 20vmin !important;
+					font-size: 3vmin !important;
+				}
 				display: flex;
 				margin: 0 (-$h-spacing);
 				> * {
@@ -38,13 +46,6 @@
 					flex: 0 0 120px;
 				}
 			}
-
-    }
-
-    .userControl {
-      height: 70%;
-      width: 100%;
-      background: #2A2A2D;
     }
 	}
 

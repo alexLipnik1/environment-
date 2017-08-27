@@ -80,7 +80,7 @@ export default class MainPage extends React.Component {
 			<div className={styles.container}>
 				<div className={styles.control}>
 					<div className={styles.dateControl}>
-						<DatePicker onChange={this.updateDate} floatingLabelText="Select Date" value={this.state.date} />
+						<DatePicker onChange={this.updateDate} value={this.state.date} />
 						<div className={styles.time}>
 							<TimePicker
 								hintText="Select Time"
