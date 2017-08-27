@@ -4,7 +4,7 @@ import styles from './app.scss';
 
 
 const style = {
-  width: '85%',
+  width: '100%',
   height: '100%'
 }
 
@@ -60,9 +60,11 @@ export class MapContainer extends React.Component {
 
   render() {
     const { active, inactive, ...rest } = this.props;
+    const first = active[0] || inactive[0];
+    console.log(active, inactive)
     return (
   		<Map
-        center={inactive ? this.getDataLocation(inactive[0]) : ''}
+        center={first ? this.getDataLocation(first) : null}
         style={style}
         zoom={7}
         {...rest} 
@@ -71,7 +73,7 @@ export class MapContainer extends React.Component {
           inactive && this.inactiveMarkers(inactive)
         }
         {
-          active && this.inactiveMarkers(active)
+          active && this.activeMarkers(active)
         }
         <InfoWindow
           marker={this.state.activeMarker}

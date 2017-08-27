@@ -11,6 +11,8 @@ MongoClient.connect(url, function(err, db) {
 	var cnt = 0;
 
 	function process(o){
+		o.time = new Date(o.time);
+		o.ltime = new Date(o.ltime);		
 		db.collection(o.type).insertOne(o, function(err, res) {
 			if (err) throw err;
 		});

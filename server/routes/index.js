@@ -19,7 +19,7 @@ router.get('/get-geo-data', function (req, res, data) {
 		var geoData;
 		var tagData;
 
-		const sel = {'time': {$gte: req.query.from, $lt: req.query.to}};
+		const sel = {'time': {$gte: new Date(req.query.from), $lt: new Date(req.query.to)}};
 		var cursor1 = db.collection('geo').find(sel).toArray((err, geos) => {
 			if(err){
 				return res.status(500).send("Couldn't fetch documents")

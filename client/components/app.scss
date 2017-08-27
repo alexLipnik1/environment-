@@ -1,7 +1,15 @@
 
-._map {
-  height: 100%;
-  width: 100%;
+.raisedButton {
+	bottom: 0;
+	margin: 10px 120px;
+	> :first-child{
+		height: 20px !important;
+		width: 140px !important;
+		> :first-child{
+			border: 1.2px #959292 solid;
+			background: #F8F4F4;
+		}
+	}
 }
 
 .sendButton {
@@ -16,11 +24,8 @@
 
 	.control {
 		display: flex;
-		flex-direction: column;
 		height: 100%;
 		width: 15%;
-		flex: 0 0 auto;
-		background: black;
 
     .dateControl {
       height: 100%;
@@ -29,14 +34,14 @@
 			padding: 10px 25px;
 			> :first-child > :first-child {
 				width: 20vmin !important;
-				font-size: 3vmin !important;
+				font-size: 14px !important;
 			}
 			
 			.time {
 				$h-spacing: 8px;
 				> :first-child > :first-child {
 					width: 20vmin !important;
-					font-size: 3vmin !important;
+					font-size: 14px !important;
 				}
 				display: flex;
 				margin: 0 (-$h-spacing);
@@ -50,7 +55,8 @@
 	}
 
 	.map_control {
-		display: felx;
+		display: block;
+		position: absolute;
 		flex-direction: column;
 		height: 100%;
     width: 100%;
