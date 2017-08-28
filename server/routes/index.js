@@ -15,7 +15,6 @@ router.get('/get-geo-data', function (req, res, data) {
 		if(err){
 			return res.status(500).send("Couldn't connect to server")
 		}
-
 		var geoData;
 		var tagData;
 
@@ -25,7 +24,6 @@ router.get('/get-geo-data', function (req, res, data) {
 				return res.status(500).send("Couldn't fetch documents")
 			}
 			geoData = geos;
-			// db.close();
 		});
 
 		var cursor2 = db.collection('tag').find(sel).toArray((err, tags) => {

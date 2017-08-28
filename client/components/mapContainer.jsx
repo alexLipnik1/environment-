@@ -61,7 +61,6 @@ export class MapContainer extends React.Component {
   render() {
     const { active, inactive, ...rest } = this.props;
     const first = active[0] || inactive[0];
-    console.log(active, inactive)
     return (
   		<Map
         center={first ? this.getDataLocation(first) : null}

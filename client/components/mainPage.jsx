@@ -48,8 +48,6 @@ export default class MainPage extends React.Component {
 				const activeUsers = [];
 				const inactiveUsers = [];
 				const activeIds = tag.map(v => v.client_id);
-				console.log('asdfasdf', tag, geo)
-
 				geo.forEach(g => {
 					if(activeIds.includes(g.client_id)){
 						activeUsers.push(g);
@@ -77,7 +75,7 @@ export default class MainPage extends React.Component {
 						onClick={this.handleToggle}
 					/>
 					<Drawer width={200} openSecondary={true} open={this.state.open} >
-						<AppBar title="AppBar" />
+						<AppBar onClick={this.handleToggle} title="AppBar" />
 						<div className={styles.dateControl}>
 							<DatePicker onChange={this.updateDate} value={this.state.date} />
 							<div className={styles.time}>
