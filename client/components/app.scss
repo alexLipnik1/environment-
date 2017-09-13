@@ -1,28 +1,68 @@
 
-.container {
+@mixin flex-center {
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+}
+
+html, body, #root {
+	padding: 0;
+	margin: 0;
 	height: 100%;
-	background: black;
+	width: 100%;
+}
 
+.container {
+	@include flex-center;
+	flex-direction: row;
+	width: 100%;
+}
 
-	.control {
-		display: flex;
+.control {
+	width: 90%;
+	background: white;
+}
+
+.picture{
+	margin: 10px;
+	width: 80%;
+	height: 80%;
+	@include flex-center;
+
+	img{
 		height: 100%;
-		width: 80%;
-		background: white;
-
-		.product{
-			height: 100%;
-			width: 50%;
-		}
-
-		.information{
-			height: 100%;
-			width: 50%;
-		}
+		width: 100%;
 	}
+}
+
+.product{
+	padding: 40px 0 0 0;
+	width: 80%;
+	@include flex-center;
+	flex-direction: column;
+	
+	.mainPictureContainer{
+		flex: 2;
+		@include flex-center;
+		flex-direction: column;
+		height: 800px;	
+		width: 100%;
+		background: #C5C1C1;
+	}
+	
+	.brif{
+		width: 100%;
+		height: 100%;
+		flex: 1;
+	}
+	.productStory{
+		width: 100%;
+		height: 100%;
+		flex: 1;
+	}
+}
+
+.information{
+	height: 100%;
+	width: 20%;
 }
